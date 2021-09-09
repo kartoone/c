@@ -49,6 +49,12 @@ void printArray(int a[], int size) {
  *  a: the array of int values
  *  size: the number of elements in the array
  *  returns: the smallest value in the array
+ *
+ *  note that the implementation is the memory efficient way to do this 
+ *  without allocating space for a separate index variable i
+ *
+ *  note specifically that the size variable is being used as an index and therefore must be decremented before the loop starts
+ *  and can stop before the final comparison at position 0
  */
 int minimum(int a[], int size) {
     int low;
