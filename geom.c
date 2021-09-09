@@ -11,6 +11,7 @@ void perimeter(int *width, int *height, int count, int *perimeter);
 int main() {
 	int *width, *height, *area, *perimeter; // declaration for our four dynamically allocated arrays
 	int count;								// and the count of how many rectangles to be entered
+	int i;									// index variable for your "for loop" for retrieving the data
 
 	// TO DO: prompt the user to find out how many rectangles they are going to enter
 	// HINT: use scanf
