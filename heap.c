@@ -6,6 +6,8 @@ void swap(int* param1, int* param2);
 // note that argc and argv just complicated this tremendously and since
 // we have the ability to omit them in C programs, let's do that!
 int main() {
+	// all of these variables below will have memory allocated on the stack to hold either the value (i) or the pointer address (8 bytes)
+	// but one of them will point to a memory address on the stack (num1) and some of them will point to memory addresses on the heap (num2 and numarray)
 	int i;				// just a plain old integer (4 bytes)
 	int *num1;			// a pointer to an integer (we will have this one point to i)
 	int *num2;			// we will dynamically allocate this integer on the heap
@@ -30,9 +32,9 @@ int main() {
 	printf("The memory address ON THE STACK for num2 is:       %p\n", &num2);
 	printf("The memory address ON THE HEAP for num2 is:        %p\n", num2);
 	printf("The memory address ON THE STACK for numarray is:   %p\n", &numarray);
-	printf("The memory address ON THE HEAP for numarray is:    %p\n", numarray);
+	printf("The HEAP memory address (i.e., the value stored on the stack) for numarray is:    %p\n", numarray);
 	for (i=0; i<10; i++) {
-		printf("The memory address ON THE HEAP for numarray[%d] is: %p\n", i, &numarray[i]);
+		printf("The HEAP memory address for numarray[%d] is: %p\n", i, &numarray[i]);
 	}
 
 	// now let's look at all the values

@@ -5,6 +5,7 @@ void swap(int* param1, int* param2);
 // note that argc and argv just complicated this tremendously and since
 // we have the ability to omit them in C programs, let's do that!
 int main() {
+	// all of the variables below have all of their memory allocated on the stack, but none of them have been initialized yet
 	int i;				// just a plain old integer (4 bytes)
 	int num1;			// another integer (4 bytes)
 	int num2;			// another integer (4 bytes)
@@ -26,12 +27,12 @@ int main() {
 
 	// now let's do some printf functions to display some of the interesting memory addresses and values
 	// first let's display all the memory addresses
-	printf("The memory address ON THE STACK for i is:          %p\n", &i);
-	printf("The memory address ON THE STACK for num1 is:       %p\n", &num1);
-	printf("The memory address ON THE STACK for num2 is:       %p\n", &num2);
-	printf("The memory address ON THE STACK for p1 is:         %p\n", &p1);
-	printf("The memory address ON THE STACK for p2 is:         %p\n", &p2);
-	printf("The memory address ON THE STACK for numarray is:   %p\n", &numarray);
+	printf("The memory address for i is:          %p\n", &i);
+	printf("The memory address for num1 is:       %p\n", &num1);
+	printf("The memory address for num2 is:       %p\n", &num2);
+	printf("The memory address for p1 is:         %p\n", &p1);
+	printf("The memory address for p2 is:         %p\n", &p2);
+	printf("The memory address for numarray is:   %p\n", &numarray);
 	for (i=0; i<10; i++) {
 		printf("The memory address ON THE STACK for numarray[%d] is %p\n", i, &numarray[i]);
 	}
@@ -43,7 +44,7 @@ int main() {
 	printf("The value stored at num2's memory location is:         %d\n", num2);               	
 	printf("The value stored at p1's memory location is:           %p\n", p1);                 
 	printf("The value stored at p2's memory location is:           %p\n", p2);
-	printf("The value stored at numarray's memory location is:     %p\n", numarray);
+	printf("The value stored at numarray's memory location is:     %d\n", *numarray);
 	for (i=0; i<10; i++) {
 		printf("The value stored at numarray[%d]'s memory location is: %d\n", i, numarray[i]);
 	}
@@ -55,7 +56,7 @@ int main() {
 	printf("%5s %12s %17p %17d\n", "int", "num2", &num2, num2);
 	printf("%5s %12s %17p %17p\n", "int*", "p1", &p1, p1);
 	printf("%5s %12s %17p %17p\n", "int*", "p2", &p2, p2);
-	printf("%5s %12s %17p %17p\n", "int[]", "numarray", &numarray, numarray);
+	printf("%5s %12s %17p %17d\n", "int[]", "numarray", &numarray, *numarray);
 	for (i=0; i<10; i++) {
 		printf("%5s %10s%1d%1s %17p %17d\n", "int", "numarray[", i, "]", &numarray[i], numarray[i]);
 	}
@@ -69,7 +70,7 @@ int main() {
 	printf("%5s %12s %17p %17d\n", "int", "num2", &num2, num2);
 	printf("%5s %12s %17p %17p\n", "int*", "p1", &p1, p1);
 	printf("%5s %12s %17p %17p\n", "int*", "p2", &p2, p2);
-	printf("%5s %12s %17p %17p\n", "int[]", "numarray", &numarray, numarray);
+	printf("%5s %12s %17p %17d\n", "int[]", "numarray", &numarray, *numarray);
 	for (i=0; i<10; i++) {
 		printf("%5s %10s%1d%1s %17p %17d\n", "int", "numarray[", i, "]", &numarray[i], numarray[i]);
 	}
