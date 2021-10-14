@@ -1,9 +1,12 @@
 #include <stdio.h>
 
 int main() {
-  char num1 = 127;
-  char num2 = 5;
-  char result1 = num1 + num2;
+  //unsigned char num1 = 0b11111111; // maximum positive char
+  unsigned char num1 = 255;
+  printf("%d\n",num1);
+
+  unsigned char num2 = 0b1;
+  unsigned char result1 = num1 + num2;
   printf("%d + %d = %d\n", num1, num2, result1);
 
   char num3 = 127;                      // largest possible positive integer using 8 bits
