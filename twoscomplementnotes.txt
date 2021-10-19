@@ -1,0 +1,29 @@
+Twos complement - HOWTO represent a negative #
+Step 1. Write it as positive #
+Step 2. Flip all the bits
+Step 3. Add 1
+
+Example: Represent -64 using two's complement 
+0   1  0  0  0 0 0 0 Step 1
+    1  1  1  1 1 1   <== These 1s are the carries from Step 3
+1   0  1  1  1 1 1 1 Step 2
+                   1 Step 3
+--------------------
+1   1  0  0  0 0 0 0 Final answer in binary
+0xC0 (Final answer in hex)
+
+Another example: Suppose you start with a negative number in two's complement:
+11000000 <== You are told this is a two's complement number, so you know it is negative because of the 1 in the first bit position.
+Here is how to find the magnitude of the negative number:
+    1  1  1  1 1 1 <== These 1s are the carries from Step 2
+0   0  1  1  1 1 1 1 Step 1 - Flip all the bits
+                   1 Step 2 - Add 1
+--------------------
+0   1  0  0  0 0 0 0 Final answer in binary 
+_   _  _  _  _ _ _ _
+128 64 32 16 8 4 2 1
+
+Final answer in decimal: 64 (because there is a 1 in the 64s position).
+Therefore the original number must have been -64
+
+
