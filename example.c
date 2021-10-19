@@ -14,7 +14,7 @@ int assign() {
 int main(int argc, char* argv[]) {
     int x;
     int* y;
-    y = malloc(sizeof(y));
+    y = malloc(sizeof(int));
     *y = 6;
     assign();
     x = adder();
