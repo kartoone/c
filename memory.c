@@ -4,8 +4,8 @@
 
 int n=10001; // this is about the maximum a system can handle, DON'T increase this unless you want to crash your computer
 
-double averageMat_v1(int** mat); 
-double averageMat_v2(int** mat); 
+double averageMat_v1(int** mat);
+double averageMat_v2(int** mat);
 
 int main() {
   // had to switch to heap allocation b/c the stack size for our executable isn't enough to hold our ginormous array
@@ -18,13 +18,13 @@ int main() {
   }
   printf("first 10 memory accesses in version1:\n");
   clock_t start = clock();
-  double ans1 = averageMat_v1(numbers); 
+  double ans1 = averageMat_v1(numbers);
   double elapsed1 = (clock() - start) / (double)CLOCKS_PER_SEC;
 
   printf("\n");
   printf("first 10 memory accesses in version2:\n");
   start = clock();
-  double ans2 = averageMat_v2(numbers); 
+  double ans2 = averageMat_v2(numbers);
   double elapsed2 = (clock() - start) / (double)CLOCKS_PER_SEC;
 
   printf("\n");
@@ -35,7 +35,7 @@ int main() {
 }
 
 
-double averageMat_v1(int** mat) { 
+double averageMat_v1(int** mat) {
     int i, j = 0;
 	long total = 0;
 
@@ -51,7 +51,7 @@ double averageMat_v1(int** mat) {
     return (double) total / (n * n);
 }
 
-double averageMat_v2(int** mat) { 
+double averageMat_v2(int** mat) {
     int i, j = 0;
 	long total = 0;
 
