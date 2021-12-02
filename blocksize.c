@@ -5,7 +5,9 @@
 
 int *genRandomMatrix(int n, int max) {
     int i;
-    int *mat = malloc(n * sizeof(int *));
+    int *mat;
+
+ 	posix_memalign((void**)&mat, 64, (n * sizeof(int *)));
 
     for (i = 0; i < n; i++) {
 		mat[i] = 1 + rand() % max;
@@ -15,14 +17,28 @@ int *genRandomMatrix(int n, int max) {
 }
 
 // spacing - the matrix offset to read a given number of bytes away
-void consecutiveReads(int* matrix, int spacing, int sa) {
-	printf("Part 1: block size\n");
-	printf("%d %d\n", matrix[0], matrix[spacing]);
+void consecutiveReads(int* matrix, int spacing) {
+	printf("Part 1: block size determinination\n");
+	printf("%d %d %d %p %p\n", (int)sizeof(int), matrix[0], matrix[spacing], &matrix[0], &matrix[spacing]);
+}
 
-	printf("Part 2: associativity\n");
+// spacing - the matrix offset to read a given number of bytes away
+// sa - the known set associativity
+void associativityTest(int * matrix, int spacing, int sa) {
+	printf("Part 2: associativity verification\n");
+	printf("These should generate %d misses b/c they are ALL misses.\n", sa);
 	for (int i=0; i<sa; i++) {
 		printf("matrix[%d]: %d\n",i, matrix[i*spacing]);
 	}
+	printf("These should generate %d hits b/c they are ALL hits.\n", sa);
+	for (int i=0; i<sa; i++) {
+		printf("matrix[%d+1]: %d\n",i+1, matrix[i*spacing+1]);
+	}
+	printf("These should generate %d misses b/c they are for the sets immediately after the ones currently loaded.\n", sa);
+	for (int i=sa; i<2*sa; i++) {
+		printf("matrix[%d]: %d\n",i, matrix[i*spacing]);
+	}
+	printf("Total misses should be %d + %d = %d\n", sa, sa, sa+sa);
 }
 
 
@@ -45,7 +61,8 @@ int main(int argc, char **argv) {
     srand(time(NULL));
     matrix = genRandomMatrix(n, 100);
 
-	consecutiveReads(matrix, bs/4, sa); // divide by 4 b/c the matrix entries are each taking up 4 bytes 
+	consecutiveReads(matrix, bs/4); // divide by 4 b/c the matrix entries are each taking up 4 bytes 
+//	associativityTest(matrix, bs/4, sa); // divide by 4 b/c the matrix entries are each taking up 4 bytes 
 
     free(matrix);
     return 0;
