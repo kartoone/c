@@ -6,7 +6,6 @@
 long *array; //allocated in main
 long length; //set in main (1 billion)
 long nthreads; //number of threads
-long s; //scalar
 
 void printArray() {
 	printf("columns represent different threads ...\n");
@@ -57,13 +56,12 @@ int main(int argc, char **argv) {
     int ret; //useful for error detection
 
     /* Read the number of threads to create from the command line. */
-    if (argc != 4) {
-        fprintf(stderr, "usage: %s int int int<n>\n", argv[0]);
+    if (argc != 3) {
+        fprintf(stderr, "usage: %s int int <n>\n", argv[0]);
         return 1;
     }
     nthreads = strtol(argv[1], NULL, 10); //get number of threads
     length = strtol(argv[2], NULL, 10); //get length of array
-    s = strtol( argv[3], NULL, 10 ); //get scaling factor
 	printf("ALLOCATING ARRAY...\n");
     array = malloc(length*sizeof(long));
     for (i=0; i<length; i++) {
